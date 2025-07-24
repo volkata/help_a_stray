@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+{% load static %}
+    {% include 'district/head.html' %}
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="../index.html" class="logo">
+									<span class="symbol"><img src={% static "images/logo.svg" %} alt="" /></span><span class="title">Phantom</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+                    {% include 'district/menu.html' %}
+                    {% block content %}
+                    {% endblock %}
+            {% include 'district/footer.html' %}
+            </div>
+            <script src="{% static 'js/jquery.min.js' %}"></script>
+			<script src="{% static 'js/browser.min.js' %}"></script>
+			<script src="{% static 'js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'js/util.js' %}"></script>
+			<script src="{% static 'js/main.js' %}"></script>
+    </body>
+</html>

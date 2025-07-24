@@ -1,0 +1,29 @@
+{% extends 'district/base.html' %}
+{% load static %}
+
+				<!-- Main -->
+{% block content %}
+					<div id="main">
+						<div class="inner">
+							<header>
+								<h1>help-a-stray - companion for coordinating care to our feline friends without a home</h1>
+								<p>Start by selecting your district, or use the Menu navigation on the right</p>
+							</header>
+							<section class="tiles">
+                                {% for district in districts %}
+								<article class="style1">
+									<span class="image">
+										<img src="{% static 'images/pic01.jpg' %}" alt="" />
+									</span>
+									<a href="{% url 'cats_in_district' district.pk%}">
+										<h2>{{ district.name }}</h2>
+										<div class="content">
+											<p>Cat count: {{ district.cat_count }}</p>
+										</div>
+									</a>
+								</article>
+								{% endfor %}
+							</section>
+						</div>
+					</div>
+{% endblock %}

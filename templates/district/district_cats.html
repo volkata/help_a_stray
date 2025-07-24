@@ -1,0 +1,28 @@
+{% extends 'district/base.html' %}
+{% load static %}
+{% block content %}
+					<div id="main">
+						<div class="inner">
+							<header>
+								<h1>{{ district.name }}</h1>
+								<p>Select a cat to view details or log sighting.</p>
+							</header>
+							<section class="tiles">
+                                {% for cat in cats %}
+								<article class="style1">
+									<span class="image">
+										<img src="{% static 'images/pic01.jpg' %}" alt="" />
+									</span>
+									<a href="../generic.html">
+										<h2>{{ cat.name }}</h2>
+										<div class="content">
+											<p>Last fed: {{ cat.last_fed }}</p>
+                                            <p>Last water: {{ cat.last_water }}</p>
+										</div>
+									</a>
+								</article>
+								{% endfor %}
+							</section>
+						</div>
+					</div>
+{% endblock %}
