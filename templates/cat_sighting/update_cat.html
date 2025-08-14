@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+{% extends 'district/base.html' %}
+{% load static %}
+{% load placeholder_filter %}
+{% block content %}
 <body>
-$END$
-</body>
-</html>
+    <div class="register-container">
+        <div class="sighting-p1">
+         <h2>Cat Sighting - updating cat {{ cat.name }}</h2>
+            <form method="post" class="sighting">
+                {% csrf_token %}
+                <label>{{ form.gave_food }}Food given:</label>
+                <label>{{ form.gave_water }}Water given:</label>
+                {{ form.health_notes|placeholder:'Health notes' }}
+                <button type="submit">Finish</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

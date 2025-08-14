@@ -2,10 +2,23 @@
 <nav id="menu">
     <h2>Menu</h2>
     <ul>
+        {% if not request.user.is_authenticated %}
+            <li class="auth-buttons">
+                <a href={% url 'register' %}>Register</a>
+                <span>/</span>
+                <a href={% url 'login' %}>Login</a>
+            </li>
+        {% else %}
+            <li> <a href="{% url 'profile-details' request.user.profile.pk %}">Profile</a> </li>
+            <li>
+                <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="logout">Logout</button>
+                </form>
+            </li>
+        {% endif %}
         <li><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="../generic.html">Ipsum veroeros</a></li>
-        <li><a href="../generic.html">Tempus etiam</a></li>
-        <li><a href="../generic.html">Consequat dolor</a></li>
-        <li><a href="../elements.html">Elements</a></li>
+        <li><a href="{% url 'part1' %}" }>Cat sighting</a></li>
+        <li><a href="{% url 'actions' %}">Actions</a></li>
     </ul>
 </nav>

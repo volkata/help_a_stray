@@ -1,10 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'district/base.html' %}
+{% load static %}
+{% block content %}
+    <head>
+        <title>{{ cat.name }}</title>
+    </head>
+    <body>
+        <h1>{{ cat.name }}</h1>
+        <p><strong>Gender:</strong> {{ cat.gender }}</p>
+        <p><strong>Age:</strong> {{ cat.age }}</p>
+        <p><strong>Photo:</strong> {{ cat.photo.url }}</p>
+        <p><strong>District:</strong> {{ cat.district }}</p>
+        <p><strong>Last seen:</strong> {{ cat.last_seen }}</p>
+        <p><strong>Last fed:</strong> {{ cat.last_fed }}</p>
+        <p><strong>Last water given:</strong> {{ cat.last_water }}</p>
+        <p><strong>Neutered:</strong> {{ cat.neutered }}</p>
+        <p><strong>Chipped:</strong> {{ cat.chipped }}</p>
+        <p><strong>Health notes:</strong> {{ cat.health_notes }}</p>
+        <p>Total Treatment Cost: ${{ cat.total_treatment_cost }}</p>
+
+        <form method="post" action="{% url 'contribute_treatment' cat.id %}">
+            {% csrf_token %}
+            <label for="amount">Contribution Amount ($):</label>
+            <input type="number" name="amount" id="amount" min="1" step="1" required>
+            <button type="submit">Contribute & Gain Karma</button>
+        </form>
+        {% if request.user.is_vet %}
+        <div class="account-actions">
+            <a href="{% url 'edit_action' cat.id%}" class="btn btn-primary">Edit health note</a>
+        </div>
+        {% endif %}
+        <form action="{% url 'update_cat' cat.pk %}" method="get">
+            <button type="submit">I saw this cat!</button>
+        </form>
+        {% if user.is_district_admin and user.main_district == cat.district %}
+        <form method="post" style="display:inline;">
+            {% csrf_token %}
+            {% if not cat.approved %}
+            <button type="submit" name="approve" style="background-color: #27ae60; color: white; padding: 5px 10px; border-radius: 5px;">Approve</button>
+            {% endif %}
+            <button type="submit" name="delete" style="background-color: #c0392b; color: white; padding: 5px 10px; border-radius: 5px;">Delete</button>
+        </form>
+        {% endif %}
+
+    </body>
+{% endblock %}

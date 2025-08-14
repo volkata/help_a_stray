@@ -3,21 +3,43 @@
 {% block content %}
 					<div id="main">
 						<div class="inner">
+                            {% if non_approved_cats %}
+                            <section class="tiles" style="border: 2px solid #f39c12; padding: 15px; margin-bottom: 30px; background-color: #fffbe6; border-radius: 8px;">
+                                <header >
+                                    <h1>{{ district.name }}</h1>
+                                    <h2>Cats to approve:</h2>
+                                    {% for cat in non_approved_cats %}
+                                    <article class="style1" style="width: calc(80% - 2.5em)">
+                                        <span class="image">
+                                            <img src="{% if cat.photo %}{{cat.photo.url}}{% else %}{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}{% endif %}" alt="" />
+                                        </span>
+                                        <a href="{% url 'cat_detail' cat.pk %}">
+                                            <h2>{{ cat.name }}</h2>
+                                            <div class="content">
+                                                <p>Last fed: {{ cat.last_fed_display }}</p>
+                                                <p>Last water: {{ cat.last_water_display }}</p>
+                                            </div>
+                                        </a>
+                                    </article>
+                                    {% endfor %}
+                                </header>
+                            </section>
+                            {% endif %}
 							<header>
 								<h1>{{ district.name }}</h1>
 								<p>Select a cat to view details or log sighting.</p>
 							</header>
 							<section class="tiles">
-                                {% for cat in cats %}
+                                {% for cat in approved_cats %}
 								<article class="style1">
 									<span class="image">
-										<img src="{% static 'images/pic01.jpg' %}" alt="" />
+										<img src="{% if cat.photo %}{{cat.photo.url}}{% else %}{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}{% endif %}" alt="" />
 									</span>
-									<a href="../generic.html">
+									<a href="{% url 'cat_detail' cat.pk %}">
 										<h2>{{ cat.name }}</h2>
 										<div class="content">
-											<p>Last fed: {{ cat.last_fed }}</p>
-                                            <p>Last water: {{ cat.last_water }}</p>
+											<p>Last fed: {{ cat.last_fed_display }}</p>
+                                            <p>Last water: {{ cat.last_water_display }}</p>
 										</div>
 									</a>
 								</article>

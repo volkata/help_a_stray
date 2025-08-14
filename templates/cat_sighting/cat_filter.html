@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'district/base.html' %}
+{% load static %}
+{% block content %}
+					<div id="main">
+						<div class="inner">
+                        {% if cats %}
+                        <header>
+                            <h2>Is the cat you saw listed below:</h2>
+                        </header>
+							<section class="tiles">
+                                {% for cat in cats %}
+                                <article class="style1">
+									<span class="image">
+										<img src="{% if cat.photo %}{{cat.photo.url}}{% else %}{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}{% endif %}" alt="" />
+									</span>
+									<a href="{% url 'update_cat' cat.pk %}">
+										<h2>{{ cat.name }}</h2>
+										<div class="content">
+											<p>Last fed: {{ cat.last_fed_display }}</p>
+                                            <p>Last water: {{ cat.last_water_display }}</p>
+										</div>
+									</a>
+								</article>
+								{% endfor %}
+                            <p>Cat not there? <a href='{% url 'new_cat' %}'>Add as new</a></p>
+                            </section>
+                        {% else %}
+                        <p>No cats found in this district and color(s).</p>
+                        <a href="{% url 'new_cat' %}">Add a new cat</a>
+                        {% endif %}
+                        </div>
+                    </div>
+                    {% endblock %}

@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.db.models import Count
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
@@ -5,12 +6,13 @@ from django.views.generic import ListView, DetailView
 import district
 from district.models import District
 
+User = get_user_model()
 
 # Create your views here.
 def home(request):
     districts = District.objects.annotate(
         cat_count = Count('cats')
-    ).order_by('cat_count')
+    ).order_by('name')
     return render(request, 'district/home_page.html', {'districts': districts})
 
 class CatsInDistrictListView(DetailView):
@@ -20,8 +22,14 @@ class CatsInDistrictListView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Add all cats in this district to the context
-        context['cats'] = self.object.cats.all()
+        user = self.request.user
+        approved_cats = self.object.cats.filter(approved=True)
+        context['approved_cats'] = approved_cats
+        non_approved_cats = None
+        if user.is_district_admin():
+            if user.main_district.id == self.object.id:
+                non_approved_cats = self.object.cats.filter(approved=False)
+        context['non_approved_cats'] = non_approved_cats
         return context
 
     def get_template_names(self):

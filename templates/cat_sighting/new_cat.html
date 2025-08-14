@@ -1,10 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+{% extends 'district/base.html' %}
+{% load static %}
+{% load placeholder_filter %}
+{% block head %}
+<style>
+input[type="checkbox"] {
+    all: unset;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    display: inline-block;
+}
+</style>
+{% endblock %}
+{% block content %}
 <body>
-$END$
-</body>
-</html>
+    <div class="register-container">
+        <div class="sighting-p1">
+         <h2>Cat Sighting - adding new cat</h2>
+            <form method="post" class="sighting" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.name|placeholder:"Cat name"}}
+                {{ form.name.errors }}
+                <p>
+                    {{ form.photo.label_tag }}
+                    {{ form.photo }}
+                    {{ form.photo.errors }}
+                </p>
+                {{ form.age| placeholder:"Age" }}
+                {{ form.age.errors }}
+                <p><label>{{ form.gave_food }} Food given</label></p>
+                <p><label>{{ form.gave_water }} Water given</label></p>
+                {{ form.health_notes|placeholder:"Health notes" }}
+                <button type="submit">Finish</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -17,8 +17,10 @@ Including another URLconf
 from django.contrib import admin
 # from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
 
-import cat
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +28,9 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('actions/', include('actions.urls')),
     path('cat/', include('cat.urls')),
+    path('cat_sighting/', include('cat_sighting.urls')),
+    path('api/cat/', include('cat.urls')),
+    path('api/actions/', include('actions.urls')),
+    path('api/cat_sighting/', include('cat_sighting.urls')),
+    path('api-auth/', include('rest_framework.urls')),
 ]

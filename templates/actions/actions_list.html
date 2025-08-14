@@ -1,10 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'district/base.html' %}
+{% load static %}
+{% block content %}
+    <div id="main">
+        <div class="inner">
+        {% if health_cats %}
+        <section style="border: 2px solid #e74c3c; background-color: #fdecea; border-radius: 8px; padding: 10px; margin-bottom: 20px;">
+            <header>
+                <h2>Cats with Health Notes (visible to vets)</h2>
+            </header>
+            <section class="tiles">
+                {% for cat in health_cats %}
+                <article class="style1">
+                    <span class="image">
+                        <img src="{% if cat.photo %}{{cat.photo.url}}{% else %}{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}{% endif %}" alt="{{ cat.name }}">
+                    </span>
+                    <a href="{% url 'cat_detail' cat.pk %}">
+                        <h2>{{ cat.name }}</h2>
+                        <div class="content">
+                            <p>{{ cat.health_notes }}</p>
+                        </div>
+                    </a>
+                </article>
+                {% endfor %}
+            </section>
+        </section>
+        {% endif %}
+         <header>
+            <h1>Actions</h1>
+        </header>
+        <h3>High priority</h3>
+        <section class="tiles">
+            {% for action in high_priority %}
+            <article class="style1">
+                <span class="image">
+                    <img src="{% if action.cat.photo %}{{action.cat.photo.url}}{% else %}{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}{% endif %}" alt="" />
+                </span>
+                <a href="{% url 'cat_detail' action.cat.pk %}">
+                    <h2>{{ action.cat.name }}</h2>
+                    <div class="content">
+                        <p>Last fed: {{ action.cat.last_fed_display}}</p>
+                        <p>Last water: {{ action.cat.last_water_display }}</p>
+                    </div>
+                </a>
+            </article>
+            {% endfor %}
+        </section>
+        <h3>Medium priority</h3>
+        <section class="tiles">
+                {% for action in medium_priority %}
+                <article class="style1">
+                    <span class="image">
+                        <img src="{% if action.cat.photo %}{{action.cat.photo.url}}{% else %}{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}{% endif %}" alt="" />
+                    </span>
+                    <a href="{% url 'cat_detail' action.cat.pk %}">
+                        <h2>{{ action.cat.name }}</h2>
+                        <div class="content">
+                            <p>Last fed: {{ action.cat.last_fed_display }}</p>
+                            <p>Last water: {{ action.cat.last_water_display }}</p>
+                        </div>
+                    </a>
+                </article>
+                {% endfor %}
+        </section>
+        <h3>Low priority</h3>
+        <section class="tiles">
+                {% for action in low_priority %}
+                <article class="style1">
+                    <span class="image">
+                        <img src="{% if action.cat.photo %}{{action.cat.photo.url}}{% else %}{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}{% endif %}" alt="" />
+                    </span>
+                    <a href="{% url 'cat_detail' action.cat.pk %}">
+                        <h2>{{ action.cat.name }}</h2>
+                        <div class="content">
+                            <p>Last fed: {{ action.cat.last_fed_display }}</p>
+                            <p>Last water: {{ action.cat.last_water_display }}</p>
+                        </div>
+                    </a>
+                </article>
+                {% endfor %}
+        </section>
+        </div>
+    </div>
+{% endblock %}

@@ -2150,7 +2150,7 @@ input, select, textarea {
 		color: inherit;
 		display: block;
 		outline: 0;
-		padding: 0;
+		padding: 2px;
 		text-decoration: none;
 		width: 100%;
 	}
@@ -2217,7 +2217,6 @@ input, select, textarea {
 		display: block;
 		float: left;
 		margin-right: -2em;
-		opacity: 0;
 		width: 1em;
 		z-index: -1;
 	}
@@ -3327,3 +3326,98 @@ input, select, textarea {
 			}
 
 		}
+
+.register-container {
+            background: #fff;
+			margin: 0 auto;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+.register-container button {
+	display: block;
+	margin: 1rem auto 0;
+	padding: 0.5rem 1.5rem;
+}
+
+.register-container p{
+	margin: 0;
+	padding-top: 0.5rem;
+}
+
+#menu ul li.auth-buttons {
+    display: flex;
+	align-items: center;
+    gap: 1rem;
+}
+
+nav ul li form button.logout {
+    all: unset; /* wipe out button styles */
+    display: block; /* same as nav <a> */
+    padding: 1em 0; /* match your nav padding */
+    color: #fff !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Hover style to match nav links */
+nav ul li form button.logout:hover {
+    color: #f2849e !important; /* same hover as your <a> */
+}
+
+.color-select {
+	height: auto !important;
+	max-height: none !important;
+	overflow-y: visible !important;
+}
+
+input[type="checkbox"] {
+  all: unset !important;
+  appearance: auto !important;
+  -webkit-appearance: checkbox !important;
+  -moz-appearance: checkbox !important;
+  display: inline-block !important;
+  opacity: 1 !important;
+  width: auto !important;
+  height: auto !important;
+  cursor: pointer !important;
+  position: static !important;
+  margin: 0 5px 0 0 !important;
+  box-shadow: none !important;
+  background: initial !important;
+  border: initial !important;
+}
+
+.account-actions a {
+  display: inline-block;
+  padding: 12px 24px;       /* Bigger padding for size */
+  margin: 5px;
+  font-size: 18px;          /* Larger font */
+  border: 2px solid #007bff; /* Blue border */
+  border-radius: 6px;       /* Rounded corners */
+  color: #007bff;           /* Blue text */
+  text-decoration: none;    /* Remove underline */
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.account-actions a:hover {
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+}
+
+.account-actions a[onclick="return false;"] {
+  opacity: 0.6;           /* Dimmed */
+  cursor: not-allowed;    /* Show not-allowed cursor */
+  border-color: grey;
+  color: grey;
+}
+
+.account-actions a[onclick="return false;"]:hover {
+  background-color: transparent;
+  color: grey;
+}

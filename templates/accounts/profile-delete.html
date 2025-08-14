@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'district/base.html' %}
+{% block content %}
+    <div class="profile-container">
+        <h1>Are you sure you want to delete your profile?</h1>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Yes, proceed</button>
+            <a href="{% url 'profile-details' object.pk %}" class="btn btn-secondary">No, keep my profile</a>
+        </form>
+    </div>
+{% endblock %}

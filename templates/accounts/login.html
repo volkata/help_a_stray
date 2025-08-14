@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+{% extends 'district/base.html' %}
+{% load placeholder_filter %}
+{% block content %}
 <body>
-$END$
+    <div class="register-container">
+         <h2>Login</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.username| placeholder:'Username' }}
+                {{ form.password| placeholder:'Password' }}
+                <button type="submit">Login</button>
+            </form>
+        <div class="alternative">
+            <p>Don't have an account? <a href="{% url 'register' %}"> Register</a> </p>
+        </div>
+    </div>
+
 </body>
-</html>
+{% endblock %}

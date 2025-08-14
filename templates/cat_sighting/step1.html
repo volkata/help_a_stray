@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+{% extends 'district/base.html' %}
+{% load static %}
+{% load placeholder_filter %}
+{% block content %}
 <body>
-$END$
-</body>
-</html>
+    <div class="register-container">
+        <div class="sighting-p1">
+         <h2>Cat Sighting - part 1</h2>
+            <form method="post" class="sighting">
+                {% csrf_token %}
+                {{ form.district }}
+                <p>Hold Ctrl to select more than one:</p>
+                {{ form.color }}
+                {{ form.gender }}
+                <button type="submit">Proceed</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
