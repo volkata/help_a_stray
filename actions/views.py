@@ -36,7 +36,7 @@ class ActionsListView(ListView):
         context['low_priority'] = [a for a in queryset if a.priority == 'Low']
         context['newly_added'] = [a for a in queryset if a.priority not in self.priority_order]
 
-        # Health notes cats visible only to vets
+        # newly added Health notes cats visible only to vets
         if self.request.user.is_vet():
             health_cats = {
                 a.cat

@@ -55,8 +55,10 @@
                     <a href="{% url 'cat_detail' action.cat.pk %}">
                         <h2>{{ action.cat.name }}</h2>
                         <div class="content">
-                            <p>Last fed: {{ action.cat.last_fed_display }}</p>
-                            <p>Last water: {{ action.cat.last_water_display }}</p>
+                            <p>{{ action.action_type }}</p>
+                            {% if action.action_type == 'Health issue' %}
+                            <p>{{ action.cat.health_notes }}</p>
+                            {% endif %}
                         </div>
                     </a>
                 </article>
@@ -72,8 +74,10 @@
                     <a href="{% url 'cat_detail' action.cat.pk %}">
                         <h2>{{ action.cat.name }}</h2>
                         <div class="content">
-                            <p>Last fed: {{ action.cat.last_fed_display }}</p>
-                            <p>Last water: {{ action.cat.last_water_display }}</p>
+                            <p>{{ action.action_type }}</p>
+                            {% if action.action_type == 'Health issue' %}
+                            <p>{{ action.cat.health_notes }}</p>
+                            {% endif %}
                         </div>
                     </a>
                 </article>
