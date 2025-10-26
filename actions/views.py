@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import user_passes_test, login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import ListView
 from rest_framework import viewsets
@@ -11,7 +12,7 @@ from cat.models import Cat
 
 
 # Create your views here.
-class ActionsListView(ListView):
+class ActionsListView(LoginRequiredMixin, ListView):
     model = Action
     template_name = 'actions/actions_list.html'
     context_object_name = 'actions'

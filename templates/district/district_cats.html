@@ -11,8 +11,8 @@
                                     {% for cat in non_approved_cats %}
                                     <article class="style1" style="width: calc(80% - 2.5em)">
                                         <span class="image">
-                                            <img src="{% if cat.photo %}{{cat.photo.url}}{% else %}{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}{% endif %}" alt="" />
-                                        </span>
+										    <img class="cat-photo" src="{% if cat.photo %}{{cat.photo.url}}{% else %}{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}{% endif %}" alt="" />
+									    </span>
                                         <a href="{% url 'cat_detail' cat.pk %}">
                                             <h2>{{ cat.name }}</h2>
                                             <div class="content">
@@ -33,7 +33,7 @@
                                 {% for cat in approved_cats %}
 								<article class="style1">
 									<span class="image">
-										<img src="{% if cat.photo %}{{cat.photo.url}}{% else %}{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}{% endif %}" alt="" />
+										<img class="cat-photo" src="{% if cat.photo %}{{cat.photo.url}}{% else %}{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}{% endif %}" alt="" />
 									</span>
 									<a href="{% url 'cat_detail' cat.pk %}">
 										<h2>{{ cat.name }}</h2>

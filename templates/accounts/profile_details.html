@@ -1,49 +1,61 @@
 {% extends 'district/base.html' %}
 {% load static %}
+
 {% block content %}
-<div class="profile-container">
+<div class="cat-detail-container">
+
+  <!-- Profile Card -->
+  <div class="cat-detail-card profile-card">
     <h1>Profile Details</h1>
+
     <div class="profile-photo">
       {% if profile.profile_photo %}
-        <img src="{{ profile.profile_photo.url }}" alt="{{ profile.full_name }}">
+        <img src="{{ profile.profile_photo.url }}" alt="{{ profile.user.username }}">
       {% else %}
         <p>No profile photo available.</p>
       {% endif %}
     </div>
-    <p><strong>Username:</strong> {{ profile.user.username }}</p>
-    <p><strong>Email:</strong> {{ profile.user.email }}</p>
-    <p><strong>Main District:</strong> {{ profile.user.main_district.name }}</p>
-    <p><strong>Karma Points:</strong> {{ profile.karma_points }}</p>
-    <div class="account-actions">
-        <a href="{% url 'profile-edit' profile.pk %}" class="btn btn-primary">Edit Profile</a>
-        <a href="{% url 'profile-delete' profile.pk %}" class="btn btn-primary">Delete Profile</a>
-        <a href="" class="btn btn-primary"
-        {% if profile.karma_points < 100 %}
-        onclick="return false"
-        style="opacity: 0.5;"
-        title="You need at least 100 karma points to adopt a cat."
-        {% endif %}>Adopt Cat</a>
+
+    <div class="profile-info">
+      <p><strong>Username:</strong> {{ profile.user.username }}</p>
+      <p><strong>Email:</strong> {{ profile.user.email }}</p>
+      <p><strong>Main District:</strong> {{ profile.user.main_district.name }}</p>
+      <p><strong>Karma Points:</strong> {{ profile.karma_points }}</p>
     </div>
-    <p><strong>Cats Interacted:</strong>
-        {% if has_interacted %}
-            <section class="tiles">
-                                {% for cat in cats_interacted %}
-								<article class="style1">
-									<span class="image">
-										<img src="{% if action.cat.photo %}{{action.cat.photo.url}}{% else %}{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}{% endif %}" alt="" />
-									</span>
-									<a href="{% url 'cat_detail' cat.pk %}">
-										<h2>{{ cat.name }}</h2>
-										<div class="content">
-											<p>Last fed: {{ cat.last_fed_display }}</p>
-                                            <p>Last water: {{ cat.last_water_display }}</p>
-										</div>
-									</a>
-								</article>
-								{% endfor %}
-            </section>
-        {% else %}
-                <p>Looks like you haven't met any cats yet!</p>
-        {% endif %}
+
+    <div class="account-actions">
+      <a href="{% url 'profile-edit' profile.pk %}" class="btn btn-primary">Edit Profile</a>
+      <a href="{% url 'profile-delete' profile.pk %}" class="btn btn-delete">Delete Profile</a>
+      <a href="#"
+         class="btn btn-primary"
+         {% if profile.karma_points < 100 %}
+         onclick="return false"
+         style="opacity: 0.5;"
+         title="You need at least 100 karma points to adopt a cat."
+         {% endif %}>
+         Adopt Cat
+      </a>
+    </div>
+  </div>
 </div>
+
+  <div class="cats-interacted-section">
+  <h2>Cats Interacted</h2>
+  {% if cats_interacted %}
+  <div class="tiles">
+    {% for cat in cats_interacted %}
+      <a href="{% url 'cat_detail' cat.pk %}" class="cat-tile">
+        {% if cat.photo %}
+          <img src="{{ cat.photo.url }}" alt="{{ cat.name }}">
+        {% else %}
+          <img src="{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}" alt="{{ cat.name }}">
+        {% endif %}
+      </a>
+    {% endfor %}
+  </div>
+  {% else %}
+    <p>Looks like you haven't met any cats yet!</p>
+  {% endif %}
+</div>
+
 {% endblock %}

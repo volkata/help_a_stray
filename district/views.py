@@ -1,4 +1,6 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
@@ -15,7 +17,7 @@ def home(request):
     ).order_by('name')
     return render(request, 'district/home_page.html', {'districts': districts})
 
-class CatsInDistrictListView(DetailView):
+class CatsInDistrictListView(LoginRequiredMixin, DetailView):
     model = District
     template_name = 'district/district_cats.html'
     context_object_name = 'district'
