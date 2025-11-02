@@ -12,7 +12,7 @@
                 {% for cat in health_cats %}
                 <article class="style1">
                     <span class="image">
-                        <img src="{% if cat.photo %}{{cat.photo.url}}{% else %}{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}{% endif %}" alt="{{ cat.name }}">
+                        <img class='cat-photo' src="{% if cat.photo %}{{cat.photo.url}}{% else %}{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}{% endif %}" alt="{{ cat.name }}">
                     </span>
                     <a href="{% url 'cat_detail' cat.pk %}">
                         <h2>{{ cat.name }}</h2>
@@ -28,12 +28,12 @@
          <header>
             <h1>Actions</h1>
         </header>
-        <h3>High priority</h3>
-        <section class="tiles">
+        <h3 style="margin: 0 !important;">High priority</h3>
+        <section class="tiles" style="margin: 0 0 3em 0 !important;">
             {% for action in high_priority %}
             <article class="style1">
                 <span class="image">
-                    <img src="{% if action.cat.photo %}{{action.cat.photo.url}}{% else %}{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}{% endif %}" alt="" />
+                    <img class='cat-photo' src="{% if action.cat.photo %}{{action.cat.photo.url}}{% else %}{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}{% endif %}" alt="" />
                 </span>
                 <a href="{% url 'cat_detail' action.cat.pk %}">
                     <h2>{{ action.cat.name }}</h2>
@@ -46,11 +46,11 @@
             {% endfor %}
         </section>
         <h3>Medium priority</h3>
-        <section class="tiles">
+        <section class="tiles" style="margin: 0 0 3em 0 !important;">
                 {% for action in medium_priority %}
                 <article class="style1">
                     <span class="image">
-                        <img src="{% if action.cat.photo %}{{action.cat.photo.url}}{% else %}{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}{% endif %}" alt="" />
+                        <img class='cat-photo' src="{% if action.cat.photo %}{{action.cat.photo.url}}{% else %}{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}{% endif %}" alt="" />
                     </span>
                     <a href="{% url 'cat_detail' action.cat.pk %}">
                         <h2>{{ action.cat.name }}</h2>
@@ -65,11 +65,11 @@
                 {% endfor %}
         </section>
         <h3>Low priority</h3>
-        <section class="tiles">
+        <section class="tiles" style="margin: 0 0 3em 0 !important;">
                 {% for action in low_priority %}
                 <article class="style1">
                     <span class="image">
-                        <img src="{% if action.cat.photo %}{{action.cat.photo.url}}{% else %}{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}{% endif %}" alt="" />
+                        <img class='cat-photo' src="{% if action.cat.photo %}{{action.cat.photo.url}}{% else %}{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}{% endif %}" alt="" />
                     </span>
                     <a href="{% url 'cat_detail' action.cat.pk %}">
                         <h2>{{ action.cat.name }}</h2>

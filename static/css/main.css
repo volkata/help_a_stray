@@ -3428,7 +3428,6 @@ input[type="checkbox"] {
   object-fit: cover;
   border-radius: 10px;
   display: block;
-  margin: 0 auto 20px auto;
 }
 
 /* Cat Detail Card (from cat detail view) */
@@ -3455,13 +3454,14 @@ input[type="checkbox"] {
   width: 100%;
   max-width: 900px;
   margin-top: 30px;
+	margin-left: 80px;
 }
 
 .cats-interacted-section .tiles {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
-  justify-content: flex-start; /* like district view */
+  justify-content: center; /* like district view */
 }
 
 .cats-interacted-section .cat-tile {
