@@ -11,7 +11,7 @@
                                 {% for cat in cats %}
                                 <article class="style1">
 									<span class="image">
-										<img src="{% if cat.photo %}{{cat.photo.url}}{% else %}{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}{% endif %}" alt="" />
+										<img class="cat-photo" src="{% if cat.photo %}{{cat.photo.url}}{% else %}{% static 'images/Tom_Cat_Reading_a_Newspaper.jpg' %}{% endif %}" alt="" />
 									</span>
 									<a href="{% url 'update_cat' cat.pk %}">
 										<h2>{{ cat.name }}</h2>
@@ -22,8 +22,8 @@
 									</a>
 								</article>
 								{% endfor %}
-                            <p>Cat not there? <a href='{% url 'new_cat' %}'>Add as new</a></p>
                             </section>
+                            <p>Cat not there? <a href='{% url 'new_cat' %}'>Add as new</a></p>
                         {% else %}
                         <p>No cats found in this district and color(s).</p>
                         <a href="{% url 'new_cat' %}">Add a new cat</a>
